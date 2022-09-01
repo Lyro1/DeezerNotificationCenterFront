@@ -1,0 +1,26 @@
+
+<div class="notification" *ngIf="notification" [ngClass]="{'notification-read': notification.read_status}">
+  <a class="left" href="{{notification.content.link}}">
+    <div class="content" *ngIf="notification.content">
+      <img src="{{notification.content.image}}" alt="{{notification.content.type}}"/>
+      <div class="infos">
+        <h2>{{notification.content.title}}</h2>
+        <p>{{notification.content.artist}}</p>
+      </div>
+    </div>
+    <p class="description" *ngIf="notification.description">{{notification.description}}</p>
+    <p class="date-type">
+      {{notification.emission_date | dateAsAgo}}
+      |
+      {{notification.type | notificationTypeToDisplay}}
+      <span *ngIf="notification.author">
+        {{notification.type == 'shared_content' ? ' PAR ' + notification.author.firstname + ' ' + notification.author.lastname : ''}}
+      </span>
+    </p>
+  </a>
+  <div class="right">
+    <div class="read-icon">
+      <ion-icon name="eye-outline" (click)="markNotificationAsRead(notification.id, 1)"></ion-icon>
+    </div>
+  </div>
+</div>

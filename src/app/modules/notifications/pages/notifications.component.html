@@ -1,0 +1,8 @@
+
+<ng-container *ngIf="response">
+  <app-notification-component *ngFor="let notification of response.notifications"
+                              [notification]="notification"
+                              (markedAsRead)="loadNotifications()"
+  ></app-notification-component>
+</ng-container>
+
